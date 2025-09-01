@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书籍|神经多样性书籍分享平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+
+
+    <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold text-purple-600 dark:text-purple-400">神经多样性书籍分享平台</a>
+                </div>
+
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">首页</a>
+                        <a href="book.html"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">书籍</a>
+                        <a href="about.html"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">关于</a>
+                        <a href="#" id="profile-link"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">点击登录</a>
+                    </div>
+                </div>
+
+
+                <div class="flex items-center space-x-2">
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+
+                    <button id="mobile-menu-button" class="md:hidden p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-800 shadow-lg">
+                <a href="index.html"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium">首页</a>
+                <a href="book.html"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium">书籍</a>
+                <a href="about.html"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium">关于</a>
+                <a href="#"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium">点击登录</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <img id="book-cover" src="" alt="" class="w-full max-w-xs mx-auto rounded-lg shadow-lg">
+                </div>
+
+
+                <div class="md:col-span-2">
+                    <h1 id="book-title" class="text-3xl font-bold text-gray-900 dark:text-white mb-4">书名加载中...</h1>
+                    <p id="book-author" class="text-xl text-gray-600 dark:text-gray-300 mb-6">作者加载中...</p>
+
+
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-3">书籍简介</h3>
+                        <p id="book-description" class="text-gray-600 dark:text-gray-300 leading-relaxed">简介加载中...</p>
+                    </div>
+
+
+                    <div class="mb-6">
+                        <a id="wechat-link" href="#"
+                            class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
+                                </path>
+                            </svg>
+                            微信读书
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold">用户评论</h2>
+                <span class="text-gray-500 dark:text-gray-400" id="comments-count">0 条评论</span>
+            </div>
+
+
+            <div class="mb-8 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <textarea id="comment-input" placeholder="分享你的阅读感受..."
+                    class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 resize-none"
+                    rows="4"></textarea>
+                <div class="flex justify-end mt-3">
+                    <button id="submit-comment"
+                        class="px-6 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors">
+                        发表评论
+                    </button>
+                </div>
+            </div>
+
+
+            <div id="comments-list">
+
+            </div>
+        </div>
+    </div>
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4 text-purple-500">塔菲石</h3>
+                    <p class="text-gray-400 mb-4">
+                        致力于为神经多样性人士提供优质的资源推荐
+                    </p>
+
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="book.html" class="hover:text-white transition-colors">书籍分类</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">我的收藏</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">关于我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+
+                        <li>邮箱：是否需要放邮箱（？</li>
+                        <li>微信群：是否需要放微信号...？</li>
+                        <li>小红书：需要放小红书号吗()</li>
+                        <li>其它联系方式？</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 塔菲石｜神经多样性书籍分享平台</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/src/book-detail.js"></script>
+</body>
+
+</html>

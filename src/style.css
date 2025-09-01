@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 1s ease-out;
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+}
+
+
+
+.trapezoid-single-container {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.trapezoid-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: slideInTrapezoid 2s ease-out;
+}
+
+
+.trapezoid-single-bg {
+    position: absolute;
+    width: 100vw;
+
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, #c17ed9 0%, #a382c0 50%, #516dcb 100%);
+    clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 5% 100%);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+
+.dark .trapezoid-single-bg {
+    background: linear-gradient(135deg, #8d60be 0%, #4c237d 50%, #1c49ab 100%);
+}
+
+
+.trapezoid-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    text-align: center;
+}
+
+.trapezoid-content h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    animation: textSlideIn 2.2s ease-out;
+    margin-bottom: 8px;
+}
+
+.trapezoid-content p {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: textSlideIn 2.4s ease-out;
+}
+
+
+@keyframes slideInTrapezoid {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateX(2%);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes textSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.trapezoid-single-container:hover .trapezoid-single-bg {
+    transform: translateX(3px) scale(1.01);
+    transition: transform 0.3s ease;
+}
+
+
+@keyframes slideTagsLeft {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.tags-container {
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.tags-moving {
+    display: flex;
+    gap: 0.75rem;
+    animation: slideTagsLeft 20s linear infinite;
+    white-space: nowrap;
+}
+
+.tags-container:hover .tags-moving {
+    animation-play-state: paused;
+}

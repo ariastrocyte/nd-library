@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录注册|塔菲石神经多样性书籍分享平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full space-y-8 p-8">
+
+
+        <div class="text-center">
+            <a href="index.html" class="text-2xl font-bold text-purple-600 dark:text-purple-400">神经多样性书籍分享平台</a>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">用心阅读，用爱分享</p>
+        </div>
+
+
+        <div class="flex bg-gray-200 dark:bg-gray-700 rounded-lg p-1">
+            <button id="login-tab"
+                class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow">
+                登录
+            </button>
+            <button id="register-tab"
+                class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-300">
+                注册
+            </button>
+        </div>
+
+
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    邮箱地址
+                </label>
+                <input id="login-email" type="email" required
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    placeholder="请输入您的邮箱">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    密码
+                </label>
+                <input id="login-password" type="password" required
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    placeholder="请输入您的密码">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                登录
+            </button>
+        </form>
+
+
+        <form id="register-form" class="space-y-6 hidden">
+            <div class="space-y-4">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">基本信息</h3>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        邮箱地址 <span class="text-red-500">*</span>
+                    </label>
+                    <input id="register-email" type="email" required
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        placeholder="请输入您的邮箱">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        用户名 <span class="text-red-500">*</span>
+                    </label>
+                    <input id="register-username" type="text" required
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        placeholder="请输入用户名">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        密码 <span class="text-red-500">*</span>
+                    </label>
+                    <input id="register-password" type="password" required
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        placeholder="请输入密码（至少6位）">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        确认密码 <span class="text-red-500">*</span>
+                    </label>
+                    <input id="register-password-confirm" type="password" required
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        placeholder="请再次输入密码">
+                </div>
+            </div>
+
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    选择头像颜色
+                </label>
+                <div class="flex space-x-2">
+                    <input type="radio" name="avatar-color" value="blue" id="color-blue" class="hidden" checked>
+                    <label for="color-blue"
+                        class="w-10 h-10 bg-blue-500 rounded-full cursor-pointer ring-2 ring-offset-2 ring-blue-500 hover:scale-110 transition-transform"></label>
+
+                    <input type="radio" name="avatar-color" value="purple" id="color-purple" class="hidden">
+                    <label for="color-purple"
+                        class="w-10 h-10 bg-purple-500 rounded-full cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-purple-500 hover:scale-110 transition-transform"></label>
+
+                    <input type="radio" name="avatar-color" value="green" id="color-green" class="hidden">
+                    <label for="color-green"
+                        class="w-10 h-10 bg-green-500 rounded-full cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-green-500 hover:scale-110 transition-transform"></label>
+
+                    <input type="radio" name="avatar-color" value="pink" id="color-pink" class="hidden">
+                    <label for="color-pink"
+                        class="w-10 h-10 bg-pink-500 rounded-full cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-pink-500 hover:scale-110 transition-transform"></label>
+
+                    <input type="radio" name="avatar-color" value="orange" id="color-orange" class="hidden">
+                    <label for="color-orange"
+                        class="w-10 h-10 bg-orange-500 rounded-full cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-orange-500 hover:scale-110 transition-transform"></label>
+                </div>
+            </div>
+
+
+            <div class="space-y-4">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">个人信息（选填）</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">这些信息可以现在填写，也可以之后在个人页面补充</p>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">性别</label>
+                        <select id="register-gender"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white">
+                            <option value="">不透露</option>
+                            <option value="male">男性</option>
+                            <option value="female">女性</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">年龄</label>
+                        <input id="register-age" type="number" min="13" max="120"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                            placeholder="年龄">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">地区</label>
+                    <input id="register-location" type="text"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                        placeholder="例如：北京市">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">自我介绍</label>
+                    <textarea id="register-bio" rows="3"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white resize-none"
+                        placeholder="简单介绍一下自己..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                注册账号
+            </button>
+        </form>
+
+        <div class="text-center">
+            <a href="index.html"
+                class="text-sm text-gray-600 dark:text-gray-400 hover:text-purple-500 transition-colors">
+                返回首页
+            </a>
+        </div>
+
+
+        <div
+            class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-md">
+            <p class="text-sm text-yellow-700 dark:text-yellow-400 mb-2">开发测试（部署之前不要忘了把这段删了）:</p>
+            <button type="button" id="quick-login"
+                class="text-sm bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition-colors">
+                快速登录测试账号
+            </button>
+        </div>
+    </div>
+
+    <script src="/src/auth.js"></script>
+</body>
+
+</html>

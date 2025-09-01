@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于｜神经多样性书籍分享平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-in-left': 'slideInLeft 1s ease-out',
+                        'slide-in-right': 'slideInRight 1s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-purple-700 dark:text-purple-400">神经多样性书籍分享平台</h1>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">首页</a>
+                        <a href="book.html"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">书籍</a>
+                        <a href="about.html"
+                            class="bg-purple-500 text-white px-3 py-2 rounded-md text-sm font-medium">关于</a>
+                        <a href="#" id="profile-link"
+                            class="text-gray-600 dark:text-gray-300 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">点击登录</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+
+
+                    <button id="mobile-menu-button" class="md:hidden p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-800 shadow-lg">
+                <a href="index.html"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium">首页</a>
+                <a href="book.html"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium">书籍</a>
+                <a href="about.html"
+                    class="bg-purple-500 text-white block px-3 py-2 rounded-md text-base font-medium">关于</a>
+                <a href="#"
+                    class="text-gray-600 dark:text-gray-300 hover:text-purple-500 block px-3 py-2 rounded-md text-base font-medium"
+                    id="profile-link">点击登录</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <section class="relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900 py-20">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div
+                class="absolute w-120 h-36 bg-blue-500/15 transform -rotate-12 -top-10 -left-20 animate-slide-in-diagonal-left">
+            </div>
+            <div class="absolute w-150 h-26 bg-purple-400/20 transform -rotate-12 top-4 -left-24 animate-slide-in-diagonal-left"
+                style="animation-delay: 0.2s;"></div>
+            <div class="absolute w-240 h-36 bg-purple-300/10 transform -rotate-12 top-20 -left-16 animate-slide-in-diagonal-left"
+                style="animation-delay: 0.4s;"></div>
+
+
+            <div class="absolute w-240 h-20 bg-blue-400/20 transform -rotate-12 top-40 -right-24 animate-slide-in-diagonal-right"
+                style="animation-delay: 0.2s;"></div>
+            <div class="absolute w-180 h-48 bg-purple-300/20 transform -rotate-12 top-40 -right-16 animate-slide-in-diagonal-right"
+                style="animation-delay: 0.4s;"></div>
+        </div>
+
+        <div class="relative max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-purple-700 dark:text-purple-600 animate-fade-in">
+                About us!
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 animate-fade-in">
+                需要一个副标题
+            </p>
+        </div>
+    </section>
+
+
+    <main class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section class="mb-20 relative">
+                <div class="relative overflow-hidden rounded-3xl">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-300 to-purple-400 dark:from-purple-700/50
+                        dark:to-blue-700/50 animate-slide-bg-slow">
+                    </div>
+
+
+                    <div class="grid md:grid-cols-2 gap-0 items-center min-h-[500px] relative z-10">
+                        <div class="p-8 md:p-12 animate-slide-content-fast">
+                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">关于我们</h2>
+                            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-lg">
+                                一个示例，此处可能需要对于这个组织的介绍。但是我不确定怎么写，需要大家讨论之后写出来？那么这个地方放什么来占位呢...hmm...给大家献唱一首！（音乐起）
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-lg">
+                                风吹麦浪稻花儿香/黑土地养育着咱的爹娘/每年的冬天都大雪飞扬/热热的炕头上唠唠家常/蓝蓝的天上白云飘荡/清澈的小河在潺潺流淌/东北人爱吃那酸菜血肠/秧歌扭起来人们喜洋洋/大东北是我的家乡/唢呐吹出了美美的模样/哥们儿相聚必须整二两/醉了月亮暖了我心肠
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg font-medium">
+                                为什么是这首呢问就是刚好想到了...
+                            </p>
+                        </div>
+
+
+                        <div class="relative h-full flex items-center justify-center p-8">
+                            <div class="absolute inset-0">
+                                <div
+                                    class="absolute w-32 h-32 bg-blue-400/20 rounded-full top-1/4 left-1/4 animate-pulse">
+                                </div>
+                                <div class="absolute w-48 h-48 bg-purple-400/15 rounded-full top-1/2 right-1/4 animate-bounce"
+                                    style="animation-duration: 3s;"></div>
+                                <div class="absolute w-24 h-24 bg-indigo-400/25 rounded-full bottom-1/4 left-1/2 animate-pulse"
+                                    style="animation-duration: 2s;"></div>
+                            </div>
+
+
+                            <div class="relative z-10 text-center">
+                                <div class="text-8xl mb-4 animate-bounce" style="animation-duration: 2s;">
+                                    💡
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">关于神经多样性</h2>
+
+                    <div class="max-w-4xl mx-auto">
+                        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
+                            由社会学家Judy
+                            Singer在1990年代提出，用来描述人类神经系统自然存在的差异。它认为ASD、ADHD、阅读障碍等神经发散状态是人类神经多样性的一部分，而不是需要"治愈"的疾病。这种观点强调了接纳、理解和支持每个人独特的认知方式的重要性。
+                        </p>
+                    </div>
+
+
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-2xl p-8">
+                    <div class="tags-container">
+                        <div class="tags-moving">
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#ASD</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#ADHD</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#孤独症谱系障碍</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#注意缺陷多动障碍</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#Dyslexia</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#阅读障碍</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#Dysgraphia</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#Dyscalculia</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#OCD</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#Twice-exceptional</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#Neurodivergent</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0 text-2xl">♾️</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#WiredDifferently</span>
+
+                            <!-- 重复的标签以确保无缝循环 -->
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#ASD</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#ADHD</span>
+                            <span
+                                class="px-4 py-2 bg-purple-100 dark:bg-purple-800/30 text-purple-700 dark:text-purple-300 rounded-full font-medium hover:bg-purple-200 dark:hover:bg-purple-700/40 transition-colors flex-shrink-0">#孤独症谱系障碍</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="mb-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">参与者介绍</h2>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        需要一个小标题
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="bg-purple-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all hover:-translate-y-2 animate-fade-in">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                            <img src="/public/avatar1.jpg" alt="成员1" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="w-full h-full bg-blue-500 flex items-center justify-center text-white text-xl font-bold"
+                                style="display: none;">A</div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">哈哈哈</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            一句话简介
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 0.2s;">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                            <img src="/public/avatar2.jpg" alt="成员2" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="w-full h-full bg-purple-500 flex items-center justify-center text-white text-xl font-bold"
+                                style="display: none;">B</div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">嘿嘿嘿</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            一句话简介
+                        </p>
+                    </div>
+
+                    <div class="bg-violet-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 0.4s;">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                            <img src="/public/avatar3.jpg" alt="成员3" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="w-full h-full bg-green-500 flex items-center justify-center text-white text-xl font-bold"
+                                style="display: none;">C</div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">呵呵呵</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            一句话简介
+                        </p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 0.6s;">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                            <img src="/public/avatar4.jpg" alt="成员4" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="w-full h-full bg-orange-500 flex items-center justify-center text-white text-xl font-bold"
+                                style="display: none;">D</div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">好好好</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            一句话简介
+                        </p>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all hover:-translate-y-2 animate-fade-in"
+                        style="animation-delay: 0.8s;">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                            <img src="/public/avatar5.jpg" alt="成员5" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="w-full h-full bg-pink-500 flex items-center justify-center text-white text-xl font-bold"
+                                style="display: none;">E</div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">太好了</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            一句话简介
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+            <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">加入我们</h2>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        如果你也想为心理健康阅读推广贡献力量，欢迎联系我们
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor" />
+                                <path d="M8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h6v2H8v-2z" fill="white" />
+                            </svg>
+                        </div>>
+                        <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">微信</h3>
+                        <p class="text-gray-600 dark:text-gray-300">加入交流群</p>
+                    </div>
+
+                    <div>
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">邮箱联系</h3>
+                        <p class="text-gray-600 dark:text-gray-300">contact@example.com</p>
+                    </div>
+
+                    <div>
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor" />
+                                <path d="M8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h6v2H8v-2z" fill="white" />
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">小红书</h3>
+                        <p class="text-gray-600 dark:text-gray-300">@塔菲石</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
+
+        <footer class="bg-gray-800 dark:bg-gray-900 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="col-span-2">
+                        <h3 class="text-xl font-bold mb-4 text-purple-500">塔菲石</h3>
+                        <p class="text-gray-400 mb-4">
+                            致力于为神经多样性人士提供优质的资源推荐
+                        </p>
+
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">书籍分类</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">我的收藏</a></li>
+                            <li><a href="about.html" class="hover:text-white transition-colors">关于我们</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li>邮箱：是否需要放邮箱（？</li>
+                            <li>微信群：是否需要放微信号...？</li>
+                            <li>小红书：需要放小红书号吗()</li>
+                            <li>其它联系方式？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 塔菲石｜神经多样性书籍分享平台</p>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="/src/main.js"></script>
+        <script>
+            setTimeout(() => {
+                const profileLink = document.getElementById('profile-link');
+                const currentUser = localStorage.getItem('currentUser');
+
+                if (profileLink && currentUser) {
+                    profileLink.textContent = '我的';
+                    profileLink.href = 'profile.html';
+                }
+            }, 100);
+        </script>
+
+</body>
+
+</html>

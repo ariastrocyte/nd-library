@@ -1,0 +1,480 @@
+# 神经多样性书籍分享平台 API 文档
+#因为我不会做后端，然后就问Claude怎么办，它说可以写一个API文档，所以我就让它写了一个。
+#这里提到用户有收藏和评分功能，我还没有加到网页上去，因为不知道是否需要，目前（2025.8.31）只有评论功能
+#不知道是不是这样的，第一次做带注册登录功能的网站（所以也只搭了一个框架hhh 后面的内容大家可以一起补充），如有不规范之处还请谅解！(◎_◎;)
+
+
+## 概述
+
+本文档描述了书籍分享平台的后端 API 接口规范。
+
+**基础信息:**
+- Base URL: `https://api.yoursite.com/v1`
+- 认证方式: JWT Bearer Token
+- 数据格式: JSON
+- 字符编码: UTF-8
+
+## 认证说明
+
+需要认证的接口在请求头中包含：
+
+Authorization: Bearer <your_jwt_token>
+
+
+## 错误响应格式
+
+{
+  "error": true,
+  "message": "错误描述",
+  "code": "ERROR_CODE",
+  "details": {} // 可选的详细信息
+}
+
+
+---
+
+## 1. 用户认证 API
+
+### 1.1 用户注册
+
+**POST** `/auth/register`
+
+**请求体:**
+
+{
+  "email": "user@example.com",
+  "username": "用户名",
+  "password": "至少6位密码",
+  "avatarColor": "blue", // blue, purple, green, pink, orange
+  "gender": "male", // male, female, other, null
+  "age": 25, // 可选
+  "location": "北京", // 可选
+  "bio": "自我介绍" // 可选
+}
+
+
+**成功响应 (201):**
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": 1,
+      "email": "user@example.com",
+      "username": "用户名",
+      "avatarColor": "blue",
+      "gender": "male",
+      "age": 25,
+      "location": "北京",
+      "bio": "自我介绍",
+      "joinDate": "2025-01-01T00:00:00.000Z"
+    },
+    "token": "jwt_token_here"
+  }
+}
+
+
+**错误响应 (400):**
+- 邮箱已存在
+- 用户名已存在
+- 密码格式不符合要求
+- 必填字段缺失
+
+### 1.2 用户登录
+
+**POST** `/auth/login`
+
+**请求体:**
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": 1,
+      "email": "user@example.com",
+      "username": "用户名",
+      "avatarColor": "blue",
+      "gender": "male",
+      "age": 25,
+      "location": "北京",
+      "bio": "自我介绍",
+      "joinDate": "2025-01-01T00:00:00.000Z"
+    },
+    "token": "jwt_token_here"
+  }
+}
+
+
+### 1.3 验证 Token
+
+**GET** `/auth/me`
+
+需要认证
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": 1,
+      "email": "user@example.com",
+      "username": "用户名",
+      "avatarColor": "blue",
+      "gender": "male",
+      "age": 25,
+      "location": "北京",
+      "bio": "自我介绍",
+      "joinDate": "2025-01-01T00:00:00.000Z"
+    }
+  }
+}
+
+
+---
+
+## 2. 用户管理 API
+
+### 2.1 更新用户信息
+
+**PUT** `/users/profile`
+
+需要认证
+
+**请求体:**
+
+{
+  "username": "新用户名",
+  "avatarColor": "purple",
+  "gender": "female",
+  "age": 26,
+  "location": "上海",
+  "bio": "新的自我介绍"
+}
+
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": 1,
+      "email": "user@example.com",
+      "username": "新用户名",
+      "avatarColor": "purple",
+      "gender": "female",
+      "age": 26,
+      "location": "上海",
+      "bio": "新的自我介绍",
+      "joinDate": "2025-01-01T00:00:00.000Z"
+    }
+  }
+}
+
+
+### 2.2 获取用户评论
+
+**GET** `/users/comments`
+
+需要认证
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "comments": [
+      {
+        "id": 1001,
+        "bookId": 1,
+        "bookTitle": "创伤与恢复",
+        "content": "这本书真的很有帮助！",
+        "createdAt": "2025-08-15T10:00:00.000Z"
+      }
+    ],
+    "total": 1
+  }
+}
+
+
+---
+
+## 3. 书籍 API
+
+### 3.1 获取书籍列表
+
+**GET** `/books`
+
+**查询参数:**
+- `category`: 分类过滤 (trauma, emotion, relationship, anxiety, development)
+- `search`: 搜索关键词
+- `page`: 页码 (默认 1)
+- `limit`: 每页数量 (默认 20)
+
+**请求示例:**
+
+GET /books?category=trauma&search=创伤&page=1&limit=10
+
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "books": [
+      {
+        "id": 1,
+        "title": "创伤与恢复",
+        "author": "朱迪思·赫尔曼",
+        "cover": "https://example.com/cover.jpg",
+        "rating": 4.5,
+        "categories": ["trauma", "development"],
+        "description": "这是一本关于创伤治疗的权威著作...",
+        "publishYear": "2015",
+        "wechatReadLink": "https://weread.qq.com/link"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 25,
+      "pages": 3
+    }
+  }
+}
+
+
+### 3.2 获取书籍详情
+
+**GET** `/books/:id`
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "book": {
+      "id": 1,
+      "title": "创伤与恢复",
+      "author": "朱迪思·赫尔曼",
+      "cover": "https://example.com/cover.jpg",
+      "rating": 4.5,
+      "categories": ["trauma", "development"],
+      "description": "这是一本关于创伤治疗的权威著作...",
+      "publishYear": "2015",
+      "wechatReadLink": "https://weread.qq.com/link"
+    }
+  }
+}
+
+
+### 3.3 获取分类列表
+
+**GET** `/categories`
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "categories": [
+      {
+        "id": 1,
+        "name": "创伤治疗",
+        "slug": "trauma"
+      },
+      {
+        "id": 2,
+        "name": "情绪管理",
+        "slug": "emotion"
+      }
+    ]
+  }
+}
+
+
+---
+
+## 4. 评论 API
+
+### 4.1 获取书籍评论
+
+**GET** `/books/:id/comments`
+
+**查询参数:**
+- `page`: 页码 (默认 1)
+- `limit`: 每页数量 (默认 20)
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "comments": [
+      {
+        "id": 1001,
+        "content": "这本书真的很有帮助！",
+        "createdAt": "2025-08-15T10:00:00.000Z",
+        "user": {
+          "id": 1,
+          "username": "用户名",
+          "avatarColor": "blue"
+        }
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 20,
+      "total": 5,
+      "pages": 1
+    }
+  }
+}
+
+
+### 4.2 发表评论
+
+**POST** `/books/:id/comments`
+
+需要认证
+
+**请求体:**
+
+{
+  "content": "我的评论内容"
+}
+
+
+**成功响应 (201):**
+
+{
+  "success": true,
+  "data": {
+    "comment": {
+      "id": 1002,
+      "content": "我的评论内容",
+      "createdAt": "2025-08-15T12:00:00.000Z",
+      "user": {
+        "id": 1,
+        "username": "用户名",
+        "avatarColor": "blue"
+      }
+    }
+  }
+}
+
+
+---
+
+## 5. 收藏 API
+
+### 5.1 添加收藏
+
+**POST** `/favorites`
+
+需要认证
+
+**请求体:**
+
+{
+  "bookId": 1
+}
+
+
+**成功响应 (201):**
+
+{
+  "success": true,
+  "message": "收藏成功"
+}
+
+
+### 5.2 取消收藏
+
+**DELETE** `/favorites/:bookId`
+
+需要认证
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "message": "取消收藏成功"
+}
+
+
+### 5.3 获取用户收藏
+
+**GET** `/favorites`
+
+需要认证
+
+**成功响应 (200):**
+
+{
+  "success": true,
+  "data": {
+    "favorites": [
+      {
+        "id": 1,
+        "bookId": 1,
+        "addedAt": "2025-08-01T00:00:00.000Z",
+        "book": {
+          "id": 1,
+          "title": "创伤与恢复",
+          "author": "朱迪思·赫尔曼",
+          "cover": "https://example.com/cover.jpg",
+          "rating": 4.5
+        }
+      }
+    ]
+  }
+}
+
+
+---
+
+## 数据库表结构参考
+
+
+-- 用户表
+users (
+  id, email, username, password_hash, avatar_color,
+  gender, age, location, bio, created_at
+)
+
+-- 书籍表
+books (
+  id, title, author, cover_url, description, 
+  wechat_read_link, publish_year, created_at
+)
+
+-- 分类表
+categories (
+  id, name, slug
+)
+
+-- 书籍分类关系
+book_categories (
+  book_id, category_id
+)
+
+-- 评论表
+comments (
+  id, user_id, book_id, content, created_at
+)
+
+-- 收藏表
+favorites (
+  id, user_id, book_id, created_at
+)
+
+
